@@ -14,5 +14,6 @@ let store = {
         //If return true, we're good.
         state.user.username = username
         //state.user.userId = userId
+        console.log(state.user)
     }
 }
