@@ -1,6 +1,6 @@
 <template>
   <div class="userform">
-    <form @click="createUser">
+    <form @submit.prevent="createUser()">
       <input type="text" v-model="username" placeholder="username">
       <input type="text" v-model="password" placeholder="password">
       <input type="text" v-model="email" placeholder="email">
