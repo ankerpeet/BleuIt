@@ -1,7 +1,8 @@
 import $ from 'jquery'
 
 var state = {
-    user: {}
+    user: {},
+    thread: {}
 }
 
 let store = {
@@ -12,6 +13,10 @@ let store = {
         state.user = user
         //state.user.userId = userId
         console.log(state.user)
+    },
+    createThread(thread) {
+        state.thread = thread
+        console.log(state.thread)
     }
 }
 

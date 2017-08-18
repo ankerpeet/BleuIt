@@ -1,10 +1,11 @@
 <template>
-  <div class="userform">
-    <form @submit.prevent="createUser()">
-      <input type="text" v-model="user.username" placeholder="username">
-      <input type="text" v-model="user.password" placeholder="password">
-      <input type="text" v-model="user.email" placeholder="email">
-      <button type="submit">CREATE</button>
+  <div class="thread-form">
+    <form @submit.prevent="createThread()">
+      <input type="text" v-model="thread.title" placeholder="Title">
+      <input type="text" v-model="thread.body" placeholder="Body">
+      <input type="text" v-model="thread.tags" placeholder="Tags">
+      <input type="text" v-model="thread.url" placeholder="URL">
+      <button type="submit">Submit</button>
     </form>
   </div>
 </template>
@@ -16,19 +17,17 @@ export default {
   name: 'userform',
   data() {
     return {  
-      user: {
-        username: '',
-        password: '',
-        email: ''
+      thread: {
+        title: '',
+        body: '',
+        tags: '',
+        url: ''
       }
     }
   },
   methods: {
-    createUser() {
-      store.createUser(this.user);
-        // .then(res => {
-        //   this.results = res
-        // })
+    createThread() {
+      store.createThread(this.thread);
     }
   }
 }

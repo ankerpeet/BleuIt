@@ -2,17 +2,19 @@
   <div id="app">
 
     <!--<router-view></router-view>-->
-    <UserForm>
-    </UserForm>
+    <UserForm></UserForm>
+    <ThreadForm></ThreadForm>
   </div>
 </template>
 
 <script>
 import UserForm from './components/UserForm'
+import ThreadForm from './components/Threadform'
 export default {
   name: 'app',
   components: {
-    UserForm
+    UserForm,
+    ThreadForm
   }
 }
 </script>
