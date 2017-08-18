@@ -1,10 +1,21 @@
 <template>
   <div class="threads">
     <div v-if="this.view">
-      <h3>{{view.title}}</h3>
-      <p>{{view.body}}</p>
-      <div v-for="tag in view.tags">
-        <p>{{tag}}</p>
+      <div>
+        <h3>{{view.title}}</h3>
+        <p>{{view.body}}</p>
+        <div v-for="tag in view.tags">
+          <p>{{tag}}</p>
+        </div>
+      </div>
+      <div>
+        <form @submit.prevent="createComment(view.id)">
+        <input type="text" v-model="comment.body" placeholder="comment">
+        <button type="submit">Submit</button>
+        </form>
+      </div>
+      <div v-if="view.comments" v-for="comment in view.comments">
+        <div>{{comment.body}}</div>
       </div>
     </div>
 
@@ -28,7 +39,11 @@ export default {
   data() {
     return {
       results: [],
-      view: ""
+      view: "",
+      comment: {
+        body: ""
+      },
+      comments: ""
     }
   },
   methods: {
@@ -39,6 +54,9 @@ export default {
       console.log(thread)
       this.view = thread
     },
+    createComment(id) {
+store.createComment(this.comment, id);
+    }
   },
   mounted() {
     this.getThreads()
