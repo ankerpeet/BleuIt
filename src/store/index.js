@@ -1,19 +1,18 @@
 import $ from 'jquery'
 
 var state = {
-    user: {
-        username: '',
-        userId: ''
-    },
-    
+    user: {}
 }
 
 let store = {
-    createUser(username, password, email) {
+    state: state,
+    createUser(user) {
         //Get response from server
         //If return true, we're good.
-        state.user.username = username
+        state.user = user
         //state.user.userId = userId
         console.log(state.user)
     }
 }
+
+export {store}
