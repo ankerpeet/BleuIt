@@ -4,22 +4,22 @@
     <h1 class="logo-text">BLEU IT!</h1>
     <!--<router-view></router-view>-->
     <UserForm></UserForm>
-    <ThreadForm></ThreadForm>
+    <!-- <ThreadForm></ThreadForm> -->
     <Threads></Threads>
   </div>
 </template>
 
 <script>
   import UserForm from './components/UserForm'
-  import ThreadForm from './components/Threadform'
+  import Heading from './components/Heading'
+  // import ThreadForm from './components/Threadform'
   import Threads from './components/Threads'
   import ViewThread from './components/ViewThread'
-  import Heading from './components/Heading'
   export default {
     name: 'app',
     components: {
       UserForm,
-      ThreadForm,
+      // ThreadForm,
       Threads,
       ViewThread,
       Heading
