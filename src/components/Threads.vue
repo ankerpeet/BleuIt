@@ -1,11 +1,12 @@
 <template>
   <div class="threads">
     <div v-if="this.view">
-      <div>
+      <div class="panel">
         <h3>{{view.title}}</h3>
-        <p>{{view.body}}</p>
+        <p class="body-baby">{{view.body}}</p>
+         <img :src="view.url" alt="image">
         <div v-for="tag in view.tags">
-          <p>{{tag}}</p>
+          <p class="tags">{{tag}}</p>
         </div>
       </div>
       <div>
@@ -20,11 +21,12 @@
     </div>
 
     <div v-else v-for="thread in results">
-      <div @click="viewThread(thread)">
+      <div class="panel" @click="viewThread(thread)">
         <h3>{{thread.title}}</h3>
-        <p>{{thread.body}}</p>
+        <p class="body-baby">{{thread.body}}</p>
+        <img :src="thread.url" alt="image">
         <div v-for="tag in thread.tags">
-          <p>{{tag}}</p>
+          <p class="tags">Tags:{{tag}}</p>
         </div>
       </div>
     </div>
@@ -67,8 +69,10 @@ store.createComment(this.comment, id);
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h1,
-h2 {
+h2,
+h3 {
   font-weight: normal;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 ul {
@@ -83,5 +87,9 @@ li {
 
 a {
   color: #42b983;
+}
+
+.body-baby {
+font-size: 25px;
 }
 </style>
