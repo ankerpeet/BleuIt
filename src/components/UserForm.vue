@@ -1,12 +1,12 @@
 <template>
-  <div class="userform">
+  <!-- <div class="userform">
     <form @submit.prevent="createUser()">
       <input type="text" v-model="user.name" placeholder="username">
       <input type="text" v-model="user.password" placeholder="password">
       <input type="text" v-model="user.email" placeholder="email">
       <button type="submit">CREATE</button>
     </form>
-  </div>
+  </div> -->
 </template>
 
 <script>
