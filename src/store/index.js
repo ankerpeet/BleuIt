@@ -58,11 +58,17 @@ let store = {
         })
             .then(state.user = {})
             .fail(logError)
-    
-},
-    createThread(thread) {
-        state.thread = thread
-        console.log(state.thread)
+
+    },
+    createThread(thread, cb) {
+        thread.userId = state.user._id
+        console.log(thread)
+        $.post("//localhost:3000/api/threads", thread)
+            .then(
+                cb(thread)
+            )
+        // state.thread = thread
+        // console.log(state.thread)
     },
     getThreads(cb) {
         $.get("//localhost:3000/api/threads")

@@ -28,6 +28,7 @@ export default {
   methods: {
     createThread() {
       store.createThread(this.thread);
+      this.view = thread
     }
   }
 }
