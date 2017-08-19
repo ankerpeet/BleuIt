@@ -1,7 +1,7 @@
 <template>
   <div class="userform">
     <form @submit.prevent="createUser()">
-      <input type="text" v-model="user.username" placeholder="username">
+      <input type="text" v-model="user.name" placeholder="username">
       <input type="text" v-model="user.password" placeholder="password">
       <input type="text" v-model="user.email" placeholder="email">
       <button type="submit">CREATE</button>
@@ -17,7 +17,7 @@ export default {
   data() {
     return {  
       user: {
-        username: '',
+        name: '',
         password: '',
         email: ''
       }

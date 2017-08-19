@@ -19,7 +19,7 @@
         <div>{{comment.body}}</div>
       </div>
     </div>
-
+    
     <div v-else v-for="thread in results">
       <div class="panel" @click="viewThread(thread)">
         <h3>{{thread.title}}</h3>
@@ -49,19 +49,26 @@ export default {
     }
   },
   methods: {
-    getThreads() {
-      this.results = store.getThreads()
+    getThreads(res) {
+      this.results = res
+      
     },
     viewThread(thread) {
       console.log(thread)
       this.view = thread
     },
     createComment(id) {
-store.createComment(this.comment, id);
+      store.createComment(this.comment, id);
     }
   },
   mounted() {
+    store.getThreads(this.getThreads)
     this.getThreads()
+  },
+  computed: {
+    threads(){
+      this.results = store.state.threadArr
+    }
   }
 }
 </script>
