@@ -1,36 +1,36 @@
 <template>
-  <div class="userform">
+  <!-- <div class="userform">
     <form @submit.prevent="createUser()">
       <input type="text" v-model="user.username" placeholder="username">
       <input type="text" v-model="user.password" placeholder="password">
       <input type="text" v-model="user.email" placeholder="email">
       <button type="submit">CREATE</button>
     </form>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import { store } from '../store'
 
 export default {
-  name: 'userform',
-  data() {
-    return {  
-      user: {
-        username: '',
-        password: '',
-        email: ''
-      }
-    }
-  },
-  methods: {
-    createUser() {
-      store.createUser(this.user);
-        // .then(res => {
-        //   this.results = res
-        // })
-    }
-  }
+  // name: 'userform',
+  // data() {
+  //   return {  
+  //     user: {
+  //       username: '',
+  //       password: '',
+  //       email: ''
+  //     }
+  //   }
+  // },
+  // methods: {
+  //   createUser() {
+  //     store.createUser(this.user);
+  //       // .then(res => {
+  //       //   this.results = res
+  //       // })
+  //   }
+  // }
 }
 </script>
 
