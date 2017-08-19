@@ -2,9 +2,9 @@
   <div class="heading">
     <button @click="showLogin">Login</button>
     <button @click="showSignup">Signup</button>
-    <!-- </div> -->
+    <button @click="showSignup">Logout</button>
 
-    <!-- <div class="userform"> -->
+
     <div id="stuff">
       <form v-show="seen" @submit.prevent="createUser()">
         <input type="text" v-model="user.username" placeholder="username">
