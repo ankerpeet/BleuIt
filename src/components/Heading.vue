@@ -54,7 +54,7 @@
         store.createUser(this.user);
       },
       loginUser() {
-        store.loginUser(this.user); //not sure if this is the correct method name
+        store.login(this.user); //not sure if this is the correct method name
       }
     },
     props: {
