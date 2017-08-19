@@ -10,17 +10,20 @@
 </template>
 
 <script>
-import UserForm from './components/UserForm'
-// import ThreadForm from './components/Threadform'
-import Threads from './components/Threads'
-import ViewThread from './components/ViewThread'
-export default {
-  name: 'app',
-  components: {
-    UserForm,
-    // ThreadForm,
-    Threads,
-    ViewThread
+  import UserForm from './components/UserForm'
+  import Heading from './components/Heading'
+  // import ThreadForm from './components/Threadform'
+  import Threads from './components/Threads'
+  import ViewThread from './components/ViewThread'
+  export default {
+    name: 'app',
+    components: {
+      UserForm,
+      // ThreadForm,
+      Threads,
+      ViewThread,
+      Heading
+    }
   }
 
 </script>
