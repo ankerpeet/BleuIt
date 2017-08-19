@@ -72,7 +72,7 @@
         this.results = res
       },
       viewThread(thread) {
-        console.log(thread)
+        //console.log('try this: ' + thread)
         this.view = thread
       },
       createComment(id) {
