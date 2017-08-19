@@ -18,7 +18,7 @@
         <button @click="clearView">Go Back</button>
       </div>
       <div>
-        <form @submit.prevent="createComment(view.id)">
+        <form @submit.prevent="createComment(view._id)">
           <input type="text" v-model="comment.body" placeholder="comment">
           <button type="submit">Submit</button>
         </form>
@@ -29,6 +29,11 @@
     </div>
 
     <div v-else v-for="thread in results">
+      <div>
+        <span @click="vote(1,thread)" class="glyphicon glyphicon-upload"></span>
+        <h2>{{thread.votes}}</h2>
+        <span @click="vote(-1, thread)" class="glyphicon glyphicon-download"></span>
+      </div>
       <div class="panel" @click="viewThread(thread)">
         <h3>{{thread.title}}</h3>
         <p class="body-baby">{{thread.body}}</p>
@@ -65,25 +70,29 @@
     methods: {
       getThreads(res) {
         this.results = res
-
       },
       viewThread(thread) {
         console.log(thread)
         this.view = thread
       },
       createComment(id) {
-        store.createComment(this.comment, id);
+        store.createComment(this.comment, id, this.updateThreads);
       },
       createThread() {
         store.createThread(this.thread, this.viewThread);
       },
       clearView() {
         this.view = ''
+      },
+      vote(int, obj) {   
+        store.vote(int, obj, this.updateThreads)
+      },
+      updateThreads(res) {
+        this.results = res
       }
     },
     mounted() {
       store.getThreads(this.getThreads)
-      this.getThreads()
     },
     computed: {
       threads() {

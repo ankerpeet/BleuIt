@@ -1,6 +1,18 @@
 import $ from 'jquery'
 
-
+function postComment(thread, id, cb) {
+    $.ajax({
+        contentType: 'application/json',
+        method: 'PUT',
+        url: '//localhost:3000/api/threads/' + id + '/comments',
+        data: JSON.stringify(thread)
+    })
+        .then(() => {
+            //console.log(updatedObj)
+            store.updateThreads(cb)
+        })
+        .fail(console.log('I\'m a little teapot'))
+}
 
 var state = {
     user: {},
@@ -39,14 +51,14 @@ let store = {
         $.post("//localhost:3000/register", user)
             .then(res => {
                 state.user = res.data
-                console.log(state.user)
+                //console.log(state.user)
             })
     },
     login(user) {
         $.post("//localhost:3000/login", user)
             .then(res => {
                 state.user = res.data
-                console.log(state.user)
+                //console.log(state.user)
             })
     },
     logout() {
@@ -61,11 +73,22 @@ let store = {
 
     },
     createThread(thread, cb) {
-        thread.userId = state.user._id
-        console.log(thread)
-        $.post("//localhost:3000/api/threads", thread)
+        //thread.userId = state.user._id
+
+        var newPost = {
+            title: thread.title,
+            body: thread.body,
+            tags: thread.tags,
+            url: thread.url,
+            userId: state.user._id
+        }
+
+        console.log(state.user._id)
+
+        console.log(newPost)
+        $.post("//localhost:3000/api/threads", newPost)
             .then(
-                cb(thread)
+            cb(newPost)
             )
         // state.thread = thread
         // console.log(state.thread)
@@ -74,19 +97,55 @@ let store = {
         $.get("//localhost:3000/api/threads")
             .then((data) => {
                 state.threadArr = data
-                console.log("Store", state.threadArr)
+                //console.log("Store", state.threadArr)
                 cb(state.threadArr)
             })
-
     },
-    createComment(comment, id) {
+    createComment(comment, id, cb) {
+        var newComment = {
+            body: comment.body,
+             threadId: id,
+            userId: state.user._id
+        }
+        console.log(newComment)
         state.threadArr.forEach(function (thread) {
-            if (thread.id == id) {
-                thread.comments.push(comment)
+            console.log('this is a test of the emergency broadcast system')
+            if (thread._id == id) {
+                console.log('does it get here ' + thread)
+                thread.comments.push(newComment)
+                postComment(thread, id, cb)
+
             }
         })
-        console.log(comment, id)
-    }
+        //console.log(comment, id)
+    },
+    vote(int, thread, cb) {
+        //console.log(thread)
+        var updatedObj = {
+            votes: thread.votes + int
+        }
+
+        $.ajax({
+            contentType: 'application/json',
+            method: 'PUT',
+            url: '//localhost:3000/api/threads/' + thread._id + '/votes',
+            data: JSON.stringify(updatedObj)
+        })
+            .then(() => {
+                //console.log(updatedObj)
+                this.updateThreads(cb)
+            })
+            .fail(console.log('I\'m a little teapot'))
+    },
+    updateThreads(cb) {
+        $.get("//localhost:3000/api/threads")
+            .then((data) => {
+                state.threadArr = data
+                //console.log("Store", state.threadArr)
+                cb(state.threadArr)
+            })
+    },
+    postComment
 }
 
 export { store }
